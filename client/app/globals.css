@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0F172A;
+  /* Deep Navy */
+  --foreground: #F8FAFC;
+  /* Slate 50 */
+  --primary: #C5A022;
+  /* Law Gold */
+  --accent: #1E293B;
+  /* Slate 800 */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-serif {
+  font-family: var(--font-playfair), serif;
+}
+
+/* Blog Content Styles */
+.blog-content p {
+  margin-bottom: 2rem;
+}
+
+.blog-content h2 {
+  font-size: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  color: #F8FAFC;
+}
+
+.blog-content strong {
+  color: #F8FAFC;
+  font-weight: 700;
+}
+
+.blog-content a {
+  color: var(--primary);
+  text-decoration: underline;
+}
