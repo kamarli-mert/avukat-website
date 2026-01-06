@@ -3,6 +3,8 @@ import Image from "next/image";
 
 import prisma from "@/app/lib/prisma";
 
+export const dynamic = "force-dynamic";
+
 export default async function BlogPage() {
     const posts = await prisma.post.findMany({
         orderBy: { createdAt: 'desc' }

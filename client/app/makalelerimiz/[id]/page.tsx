@@ -4,6 +4,8 @@ import Link from "next/link";
 import prisma from "@/app/lib/prisma";
 import { notFound } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+
 export default async function PostDetail({ params }: { params: Promise<{ id: string }> }) {
     const resolvedParams = await params;
     const post = await prisma.post.findUnique({
