@@ -22,23 +22,7 @@ export default function Admin() {
     }
 
     return (
-        <div className="py-8">
-            <div className="flex justify-between items-center mb-8">
-                <h1 className="text-3xl font-bold text-slate-800">Yönetim Paneli</h1>
-                <div className="flex items-center gap-4">
-                    <span className="text-slate-600">Hoşgeldin, <b>{user.username}</b></span>
-                    <button
-                        onClick={() => {
-                            localStorage.removeItem("user");
-                            router.push("/admin/login");
-                        }}
-                        className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 text-sm"
-                    >
-                        Çıkış Yap
-                    </button>
-                </div>
-            </div>
-
+        <div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <Link href="/admin/add">
                     <div className="border border-slate-200 p-6 rounded-xl hover:shadow-md transition cursor-pointer bg-white h-full">

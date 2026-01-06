@@ -42,8 +42,7 @@ const Navbar = () => {
     const isHome = pathname === "/";
 
     return (
-        <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "bg-slate-950/95 backdrop-blur-md shadow-2xl py-3" : "bg-transparent py-6"
-            }`}>
+        <nav className={`absolute top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent py-6`}>
             <div className="container mx-auto px-6 flex justify-between items-center">
                 <Link href="/" className="group flex items-center gap-3">
                     <div className="w-10 h-10 border-2 border-primary rounded-full flex items-center justify-center group-hover:bg-primary transition-all duration-500">
@@ -57,7 +56,8 @@ const Navbar = () => {
                 <div className="hidden md:flex gap-10 items-center">
                     <Link href="/" className={`text-sm tracking-[0.2em] font-medium transition duration-300 ${isHome ? "text-primary" : "text-slate-300 hover:text-primary"}`}>ANA SAYFA</Link>
                     <Link href="/about" className="text-sm tracking-[0.2em] font-medium text-slate-300 hover:text-primary transition duration-300">HAKKIMIZDA</Link>
-                    <Link href="/blog" className="text-sm tracking-[0.2em] font-medium text-slate-300 hover:text-primary transition duration-300">BLOG</Link>
+                    <Link href="/faaliyet-alanlarimiz" className="text-sm tracking-[0.2em] font-medium text-slate-300 hover:text-primary transition duration-300">FAALİYET ALANLARIMIZ</Link>
+                    <Link href="/makalelerimiz" className="text-sm tracking-[0.2em] font-medium text-slate-300 hover:text-primary transition duration-300">MAKALELERIMIZ</Link>
                     <Link href="/contact" className="text-sm tracking-[0.2em] font-medium text-slate-300 hover:text-primary transition duration-300">İLETİŞİM</Link>
 
                     {user ? (
@@ -74,7 +74,7 @@ const Navbar = () => {
                         </div>
                     ) : (
                         <Link href="/admin/login" className="text-slate-500 hover:text-white text-[10px] tracking-[0.3em] font-bold uppercase transition ml-4">
-                            Üye Girişi
+                            Admin Girişi
                         </Link>
                     )}
                 </div>

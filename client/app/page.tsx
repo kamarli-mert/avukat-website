@@ -8,19 +8,43 @@ export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   const practiceAreas = [
-    { title: "Aile Hukuku", desc: "Boşanma, mal paylaşımı ve velayet davalarında uzman destek.", icon: "⚖️" },
-    { title: "İş Hukuku", desc: "İşçi-işveren uyuşmazlıkları ve iade davaları yönetimi.", icon: "👨‍💼" },
-    { title: "Gayrimenkul Hukuku", desc: "Alım-satım, kira sözleşmeleri ve tapu davaları.", icon: "🏠" },
-    { title: "İcra ve İflas Hukuku", desc: "Alacak takibi ve borç yapılandırma süreçleri.", icon: "📑" },
-    { title: "Tüketici Hukuku", desc: "Tüketici hakları ve ayıplı mal uyuşmazlıkları.", icon: "🛒" },
-    { title: "Ceza Hukuku", desc: "Etkin savunma ve hukuki danışmanlık hizmetleri.", icon: "🏛️" },
+    {
+      title: "Aile Hukuku",
+      desc: "Boşanma, mal paylaşımı ve katılma alacağı gibi konularda müvekkillerimize hukuki destek sağlıyoruz.",
+      image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=2070&auto=format&fit=crop"
+    },
+    {
+      title: "İş Hukuku",
+      desc: "İşçilik alacakları ve işe iade davaları gibi işçi-işveren ilişkilerini düzenleyen konularda hizmet veriyoruz.",
+      image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop"
+    },
+    {
+      title: "Gayrimenkul Hukuku",
+      desc: "Gayrimenkul alım satım işlemleri ve kira sözleşmeleri gibi konularda hukuki danışmanlık sunmaktayız.",
+      image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=2070&auto=format&fit=crop"
+    },
+    {
+      title: "İcra ve İflas Hukuku",
+      desc: "Alacak davaları ve menfi tespit davaları ile müvekkillerimizin haklarını korumaya yönelik çözümler üretiyoruz.",
+      image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=2070&auto=format&fit=crop"
+    },
+    {
+      title: "Tüketici Hukuku",
+      desc: "Tüketici hakları ihlalleri ve tüketici sözleşmeleri gibi alanlarda hukuki destek sağlıyoruz.",
+      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2070&auto=format&fit=crop"
+    },
+    {
+      title: "Ceza Hukuku",
+      desc: "Ceza davalarında savunma hizmetleri ve hukuki danışmanlık ile müvekkillerimizin yanında yer alıyoruz.",
+      image: "https://images.unsplash.com/photo-1589216532372-1c2a367900d9?q=80&w=2070&auto=format&fit=crop"
+    },
   ];
 
   const faqs = [
-    { q: "Boşanma sürecinde nelere dikkat etmeliyim?", a: "Boşanma sürecinde mal paylaşımı, çocukların velayeti ve nafaka gibi konular kritik öneme sahiptir. Profesyonel yardım almak haklarınızı korumanızı sağlar." },
-    { q: "İşten haksız yere çıkarıldım, ne yapmalıyım?", a: "İşe iade davası veya kıdem-ihbar tazminatı talebi için yasal süreleri kaçırmadan hukuki süreci başlatmalısınız." },
-    { q: "Tüketici haklarımı nasıl koruyabilirim?", a: "Ayıplı bir mal veya hizmet aldığınızda Tüketici Hakem Heyeti veya Tüketici Mahkemeleri aracılığıyla hak arayabilirsiniz." },
-    { q: "Miras paylaşımı sırasında neler yapmalıyım?", a: "Veraset ilamı çıkarılması ve mirasın hakkaniyetli paylaşımı için hukuki danışmanlık almak uyuşmazlıkları önler." },
+    { q: "Boşanma sürecinde nelere dikkat etmeliyim?", a: "Boşanma sürecinde, mal paylaşımı, çocukların velayeti ve nafaka gibi konulara dikkat etmek önemlidir. Bu süreçte hukuki destek almak, haklarınızı korumanıza yardımcı olur." },
+    { q: "İşten haksız yere çıkarıldım, ne yapmalıyım?", a: "İşten haksız yere çıkarıldığınızı düşünüyorsanız, işe iade davası açma hakkınız bulunmaktadır. Bu süreçte iş hukuku alanında uzman bir avukattan destek almanız önerilir." },
+    { q: "Tüketici haklarımı nasıl koruyabilirim?", a: "Tüketici haklarınızı korumak için, aldığınız ürün veya hizmetle ilgili yaşadığınız sorunları belgeleyin ve ilgili kurumlarla iletişime geçin. Gerekirse, hukuki destek alarak yasal yollarla hakkınızı arayabilirsiniz." },
+    { q: "Miras paylaşımı sırasında neler yapmalıyım?", a: "Miras paylaşımında, mirasçıların haklarını belirlemek ve olası anlaşmazlıkları önlemek için hukuki bir danışmanlık almak önemlidir. Mirasın yasal yollarla paylaşılması için gereken belgeleri ve süreçleri avukatınızla birlikte gözden geçirmeniz faydalı olacaktır." },
   ];
 
   return (
@@ -74,13 +98,13 @@ export default function Home() {
               <h2 className="text-4xl lg:text-5xl font-serif font-bold leading-tight">Profesyonel ve Güvenilir <br />Hukuki Çözümler</h2>
               <div className="w-20 h-1 bg-primary"></div>
               <p className="text-slate-600 text-lg leading-relaxed">
-                Hukuk Büromuz, 2012 yılında Avukat Ali Taylan tarafından kurulmuştur. Müvekkillerimizin menfaat ve ihtiyaçları doğrultusunda yaratıcı ve çözüm odaklı avukatlık hizmeti sunmaktayız.
+                Hukuk Büromuz, 2012 yılında Avukat Ali Taylan tarafından kurulmuştur. Müvekkillerimizin menfaat ve ihtiyaçları doğrultusunda yaratıcı ve çözüm odaklı avukatlık ve danışmanlık hizmeti sunmaktayız. Ana çalışma alanlarımız arasında aile hukuku, boşanma ve mal rejimleri, iş hukuku, miras hukuku, icra hukuku, tüketici hukuku, ceza hukuku ve ticaret hukuku yer almaktadır.
               </p>
               <p className="text-slate-600 text-lg leading-relaxed">
-                Büromuzun amacı, müvekkillerimizi en iyi şekilde temsil etmek ve meslek ilke ve değerlerine uygun hizmet sunmaktır. Mevcut hukuki ihtilafları, en az masraf ve en hızlı şekilde müvekkil yararına sonuçlandırmak için çalışıyoruz.
+                Büromuzun amacı, müvekkillerimizi en iyi şekilde temsil etmek ve meslek ilke ve değerlerine uygun hizmet sunmaktır. Mevcut hukuki ihtilafları, en az masraf ve en hızlı şekilde müvekkil yararına sonuçlandırmak için çalışıyoruz. Sizlere güvenilir ve etkili bir hizmet sunmak için buradayız.
               </p>
               <Link href="/about" className="inline-block border-2 border-slate-900 px-8 py-3 font-bold hover:bg-slate-900 hover:text-white transition-all duration-300 uppercase tracking-widest text-sm">
-                Daha Fazla Bilgi
+                Hakkımızda Daha Fazla Bilgi
               </Link>
             </div>
           </div>
@@ -88,75 +112,85 @@ export default function Home() {
       </section>
 
       {/* Practice Areas */}
-      <section className="py-24 bg-slate-50 border-y border-slate-200">
-        <div className="container mx-auto px-6 text-center mb-16">
-          <h4 className="text-primary font-serif font-bold tracking-[0.3em] uppercase text-sm mb-4">Hizmet Alanlarımız</h4>
-          <h2 className="text-4xl lg:text-5xl font-serif font-bold text-slate-900">Faaliyet Alanlarımız</h2>
-          <div className="w-20 h-1 bg-primary mx-auto mt-6"></div>
-        </div>
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section className="bg-white py-24">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <div className="flex justify-between items-end border-b border-slate-100 pb-8 mb-12">
+            <div>
+              <h2 className="text-4xl lg:text-5xl font-serif font-bold text-slate-900 leading-tight">Faaliyet Alanlarımız</h2>
+            </div>
+            <Link href="/faaliyet-alanlarimiz" className="text-slate-500 hover:text-primary transition-colors text-xs uppercase tracking-[0.3em] font-bold pb-2">
+              TÜMÜNÜ İNCELEYİN
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 rounded-2xl overflow-hidden shadow-2xl">
             {practiceAreas.map((area, index) => (
-              <div key={index} className="group bg-white p-10 rounded-xl shadow-sm hover:shadow-2xl transition-all duration-500 border border-slate-100 relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-                  <span className="text-8xl">{area.icon}</span>
+              <div key={index} className="group relative h-[350px] overflow-hidden">
+                <Image
+                  src={area.image}
+                  alt={area.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700 brightness-[0.4] group-hover:brightness-[0.25]"
+                />
+                <div className="absolute inset-0 p-10 flex flex-col justify-center text-white z-10 transition-transform duration-500 group-hover:-translate-y-6">
+                  <h3 className="text-2xl font-serif font-bold mb-4">{area.title}</h3>
+                  <div className="h-px w-12 bg-primary mb-6 transition-all duration-500 group-hover:w-full"></div>
+                  <p className="text-sm text-slate-300 leading-relaxed max-w-xs transition-opacity duration-500 line-clamp-6">
+                    {area.desc}
+                  </p>
+                  <Link href="/contact" className="mt-8 text-primary font-bold text-[10px] tracking-[0.2em] opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0 uppercase">
+                    BİLGİ ALIN →
+                  </Link>
                 </div>
-                <div className="text-4xl mb-6 bg-slate-50 w-20 h-20 flex items-center justify-center rounded-2xl group-hover:bg-primary transition-colors duration-500">
-                  {area.icon}
-                </div>
-                <h3 className="text-2xl font-serif font-bold text-slate-900 mb-4 group-hover:text-primary transition-colors">{area.title}</h3>
-                <p className="text-slate-600 leading-relaxed mb-6">{area.desc}</p>
-                <Link href="/contact" className="text-primary font-bold text-sm tracking-widest hover:translate-x-2 transition-transform inline-block">
-                  BİLGİ ALIN →
-                </Link>
-                <div className="absolute bottom-0 left-0 h-1 w-0 bg-primary group-hover:w-full transition-all duration-700"></div>
               </div>
             ))}
-          </div>
-          <div className="text-center mt-12">
-            <Link href="/contact" className="text-slate-400 hover:text-primary transition-colors text-sm uppercase tracking-[0.3em] font-bold">
-              Tümünü İnceleyin
-            </Link>
           </div>
         </div>
       </section>
 
+
       {/* FAQ Section */}
       <section className="py-24 bg-white">
-        <div className="container mx-auto px-6 flex flex-col lg:flex-row gap-16">
+        <div className="container mx-auto px-6 flex flex-col lg:flex-row items-start gap-16">
           <div className="flex-1">
-            <div className="sticky top-32">
-              <h4 className="text-primary font-serif font-bold tracking-[0.3em] uppercase text-sm mb-4">Yardım Masası</h4>
+            <div>
               <h2 className="text-4xl font-serif font-bold text-slate-900 mb-8">Sıkça Sorulan Sorular</h2>
-              <p className="text-slate-600 text-lg mb-8 leading-relaxed">
+              <p className="text-slate-800 text-lg mb-8 leading-relaxed">
                 Hukuki süreçlerle ilgili aklınıza takılan en yaygın soruları sizler için yanıtladık. Daha detaylı bilgi için bize ulaşabilirsiniz.
               </p>
-              <div className="p-8 bg-slate-900 text-white rounded-2xl relative overflow-hidden group">
+              <div className="p-10 bg-slate-900 text-white rounded-2xl relative overflow-hidden group min-h-[300px] flex items-center">
+                <Image
+                  src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=2070&auto=format&fit=crop"
+                  alt="Makalelerimiz"
+                  fill
+                  className="object-cover opacity-30 transition-opacity duration-700"
+                />
                 <div className="relative z-10">
-                  <h3 className="text-xl font-serif font-bold mb-4">Ücretsiz Danışmanlık?</h3>
-                  <p className="text-slate-400 mb-6">İlk randevunuzu hemen oluşturarak durumunuzu değerlendirelim.</p>
-                  <Link href="/contact" className="bg-primary text-slate-950 px-6 py-3 rounded-lg font-bold text-sm transition hover:scale-105 inline-block">
-                    Hemen Ara
+                  <h3 className="text-2xl font-serif font-bold mb-4">Makalelerimiz</h3>
+                  <p className="text-slate-300 mb-8 leading-relaxed">
+                    Av. Ali Taylan Hukuk ve Danışmanlık olarak internet üzerindeki okurlarımız için dijital içerikler üretiyoruz. Makalelerimizi görüntülemek için ilgili sayfayı ziyaret edebilirsiniz.
+                  </p>
+                  <Link href="/makalelerimiz" className="bg-primary text-slate-950 px-8 py-3 rounded-sm font-bold text-xs tracking-widest transition-all hover:bg-white inline-block uppercase">
+                    MAKALELERİMİZ
                   </Link>
                 </div>
-                <div className="absolute -bottom-10 -right-10 text-9xl opacity-10 rotate-12 group-hover:rotate-0 transition-transform duration-700">⚖️</div>
               </div>
             </div>
           </div>
           <div className="flex-1 space-y-4">
             {faqs.map((faq, index) => (
-              <div key={index} className="border border-slate-200 rounded-xl overflow-hidden hover:border-slate-300 transition-colors">
+              <div key={index} className={`border rounded-xl overflow-hidden transition-all duration-300 ${openFaq === index ? 'border-primary/40 shadow-lg' : 'border-slate-200 hover:border-slate-300'}`}>
                 <button
                   onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                  className="w-full text-left p-6 flex justify-between items-center bg-slate-50/50 hover:bg-slate-50 transition-colors"
+                  className={`w-full text-left p-6 flex justify-between items-center transition-colors ${openFaq === index ? 'bg-blue-100/40' : 'bg-slate-50/50 hover:bg-slate-50'}`}
                 >
-                  <span className="text-lg font-serif font-bold text-slate-900">{faq.q}</span>
+                  <span className={`text-lg font-serif font-bold transition-colors ${openFaq === index ? 'text-primary' : 'text-slate-900'}`}>{faq.q}</span>
                   <span className={`text-2xl transition-transform duration-300 ${openFaq === index ? 'rotate-180 text-primary' : 'text-slate-400'}`}>
                     {openFaq === index ? '−' : '+'}
                   </span>
                 </button>
                 <div className={`transition-all duration-300 overflow-hidden ${openFaq === index ? 'max-h-96' : 'max-h-0'}`}>
-                  <div className="p-8 bg-white text-slate-600 leading-relaxed border-t border-slate-100">
+                  <div className="p-8 bg-blue-100/30 text-slate-950 leading-relaxed border-t border-blue-200/50 font-medium">
                     {faq.a}
                   </div>
                 </div>
@@ -167,10 +201,10 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary px-6">
+      <section className="py-12 bg-primary px-6">
         <div className="container mx-auto text-center">
-          <h2 className="text-3xl lg:text-5xl font-serif font-bold text-slate-950 mb-8 italic">"Adalet her zaman kazanır, biz sadece ona rehberlik ederiz."</h2>
-          <Link href="/contact" className="inline-block bg-slate-950 text-white px-12 py-5 rounded-sm font-bold tracking-widest hover:bg-slate-800 transition shadow-2xl">
+          <h2 className="text-2xl lg:text-4xl font-serif font-bold text-slate-950 mb-6 italic">"Adalet her zaman kazanır, biz sadece ona rehberlik ederiz."</h2>
+          <Link href="/contact" className="inline-block bg-slate-950 text-white px-8 py-3 rounded-sm font-bold tracking-widest hover:bg-slate-800 transition shadow-xl text-sm">
             BİZE ULAŞIN
           </Link>
         </div>

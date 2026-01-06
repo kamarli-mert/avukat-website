@@ -1,14 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
 
-async function getData(id: string) {
-    const res = await fetch(`http://127.0.0.1:5000/api/posts/${id}`, { cache: "no-store" });
-    if (!res.ok) throw new Error("Failed to fetch data");
-    return res.json();
-}
+import prisma from "@/app/lib/prisma";
+import { notFound } from "next/navigation";
 
-export default async function PostDetail({ params }: { params: { id: string } }) {
-    const post = await getData(params.id);
+export default async function PostDetail({ params }: { params: Promise<{ id: string }> }) {
+    const resolvedParams = await params;
+    const post = await prisma.post.findUnique({
+        where: { id: parseInt(resolvedParams.id) }
+    });
+
+    if (!post) notFound();
+
 
     return (
         <article className="bg-white min-h-screen">
@@ -26,8 +29,8 @@ export default async function PostDetail({ params }: { params: { id: string } })
                 {!post.photo && <div className="absolute inset-0 bg-slate-900" />}
 
                 <div className="relative z-10 container mx-auto px-6 text-center max-w-4xl">
-                    <Link href="/blog" className="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-8 inline-block hover:text-white transition">
-                        ← BLOGA DÖN
+                    <Link href="/makalelerimiz" className="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-8 inline-block hover:text-white transition">
+                        ← MAKALELERE DÖN
                     </Link>
                     <div className="flex justify-center gap-4 mb-6">
                         <span className="bg-primary text-slate-950 text-[10px] tracking-widest font-bold px-4 py-1.5 rounded-sm uppercase">
@@ -53,7 +56,7 @@ export default async function PostDetail({ params }: { params: { id: string } })
                         prose-headings:font-serif prose-headings:text-slate-900 prose-headings:font-bold
                         prose-p:mb-8 prose-strong:text-slate-900 prose-strong:font-bold
                         prose-img:rounded-xl prose-a:text-primary prose-a:no-underline hover:prose-a:underline"
-                        dangerouslySetInnerHTML={{ __html: post.desc }}
+                        dangerouslySetInnerHTML={{ __html: post.description }}
                     />
 
                     <div className="mt-20 pt-10 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-center gap-8">

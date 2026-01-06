@@ -11,7 +11,7 @@ const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false });
 export default function EditPost({ params }: { params: Promise<{ id: string }> }) {
     const resolvedParams = use(params);
     const [title, setTitle] = useState("");
-    const [desc, setDesc] = useState("");
+    const [description, setDescription] = useState("");
     const [file, setFile] = useState<File | null>(null);
     const [preview, setPreview] = useState<string | null>(null);
     const [cat, setCat] = useState("");
@@ -30,10 +30,10 @@ export default function EditPost({ params }: { params: Promise<{ id: string }> }
 
     const fetchPost = async () => {
         try {
-            const res = await fetch(`http://127.0.0.1:5000/api/posts/${resolvedParams.id}`);
+            const res = await fetch(`/api/posts/${resolvedParams.id}`);
             const data = await res.json();
             setTitle(data.title || "");
-            setDesc(data.desc || "");
+            setDescription(data.description || "");
             setCat(data.categories?.[0] || "");
             if (data.photo) setPreview(data.photo);
         } catch (err) {
@@ -44,32 +44,43 @@ export default function EditPost({ params }: { params: Promise<{ id: string }> }
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        const updatedPost: any = {
-            username: user.username,
-            title,
-            desc,
-            categories: [cat],
-        };
+        let imageUrl = preview;
 
+        // Upload new image to Cloudinary if file exists
         if (file) {
-            const data = new FormData();
-            const filename = Date.now() + file.name;
-            data.append("name", filename);
-            data.append("file", file);
-
             try {
-                await fetch("http://127.0.0.1:5000/api/upload", {
-                    method: "POST",
-                    body: data,
+                const formData = new FormData();
+                formData.append('file', file);
+
+                const uploadRes = await fetch('/api/upload', {
+                    method: 'POST',
+                    body: formData,
                 });
-                updatedPost.photo = "http://127.0.0.1:5000/images/" + filename;
+
+                if (uploadRes.ok) {
+                    const uploadData = await uploadRes.json();
+                    imageUrl = uploadData.url;
+                } else {
+                    alert("Resim yüklenirken bir hata oluştu. Lütfen tekrar deneyin.");
+                    return;
+                }
             } catch (err) {
-                console.log(err);
+                console.error("Upload error:", err);
+                alert("Resim yükleme servisine ulaşılamadı.");
+                return;
             }
         }
 
+        const updatedPost: any = {
+            username: user.username,
+            title,
+            description,
+            categories: [cat],
+            photo: imageUrl,
+        };
+
         try {
-            const res = await fetch(`http://127.0.0.1:5000/api/posts/${resolvedParams.id}`, {
+            const res = await fetch(`/api/posts/${resolvedParams.id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -88,12 +99,12 @@ export default function EditPost({ params }: { params: Promise<{ id: string }> }
     if (!user) return <div className="text-center py-20">Yükleniyor...</div>;
 
     return (
-        <div className="max-w-2xl mx-auto py-8">
-            <Link href="/admin/manage" className="text-blue-600 hover:underline mb-8 inline-block">
-                ← Listeye Dön
-            </Link>
-
-            <h1 className="text-3xl font-bold mb-8 text-slate-800">Yazıyı Düzenle</h1>
+        <div className="max-w-3xl mx-auto">
+            <div className="flex justify-end mb-8">
+                <Link href="/admin/manage" className="text-slate-500 hover:text-primary transition-colors text-xs uppercase tracking-[0.3em] font-bold pb-2">
+                    ← Geri Dön
+                </Link>
+            </div>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                 <div className="flex flex-col gap-2">
@@ -146,8 +157,8 @@ export default function EditPost({ params }: { params: Promise<{ id: string }> }
                     <div className="h-60 bg-white">
                         <ReactQuill
                             theme="snow"
-                            value={desc}
-                            onChange={setDesc}
+                            value={description}
+                            onChange={setDescription}
                             className="h-full pb-10"
                         />
                     </div>

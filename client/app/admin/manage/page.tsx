@@ -22,7 +22,7 @@ export default function ManagePosts() {
 
     const fetchPosts = async () => {
         try {
-            const res = await fetch("http://127.0.0.1:5000/api/posts");
+            const res = await fetch("/api/posts");
             const data = await res.json();
             setPosts(data);
         } catch (err) {
@@ -30,18 +30,17 @@ export default function ManagePosts() {
         }
     };
 
-    const handleDelete = async (id: string) => {
+    const handleDelete = async (id: number) => {
         if (window.confirm("Bu yazıyı silmek istediğinize emin misiniz?")) {
             try {
-                const res = await fetch(`http://127.0.0.1:5000/api/posts/${id}`, {
+                const res = await fetch(`/api/posts/${id}`, {
                     method: "DELETE",
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({ username: user.username }),
                 });
                 if (res.ok) {
-                    setPosts(posts.filter((post: any) => post._id !== id));
+                    setPosts(posts.filter((post: any) => post.id !== id));
                 }
             } catch (err) {
                 console.log(err);
@@ -52,11 +51,10 @@ export default function ManagePosts() {
     if (!user) return <div className="text-center py-20">Yükleniyor...</div>;
 
     return (
-        <div className="py-8">
-            <div className="flex justify-between items-center mb-8">
-                <h1 className="text-3xl font-bold text-slate-800">Yazıları Yönet</h1>
-                <Link href="/admin" className="text-blue-600 hover:underline">
-                    ← Panele Dön
+        <div>
+            <div className="flex justify-end mb-8">
+                <Link href="/admin" className="text-slate-500 hover:text-primary transition-colors text-xs uppercase tracking-[0.3em] font-bold pb-2">
+                    ← Geri Dön
                 </Link>
             </div>
 
@@ -73,7 +71,7 @@ export default function ManagePosts() {
                     </thead>
                     <tbody className="divide-y divide-slate-100">
                         {posts.map((post: any) => (
-                            <tr key={post._id} className="hover:bg-slate-50 transition">
+                            <tr key={post.id} className="hover:bg-slate-50 transition">
                                 <td className="p-4 w-24">
                                     {post.photo ? (
                                         <div className="relative w-16 h-12 rounded overflow-hidden border border-slate-100">
@@ -98,14 +96,14 @@ export default function ManagePosts() {
                                 </td>
                                 <td className="p-4 text-right flex justify-end gap-2">
                                     <Link
-                                        href={`/admin/edit/${post._id}`}
+                                        href={`/admin/edit/${post.id}`}
                                         className="p-2 text-blue-600 hover:bg-blue-50 rounded transition"
                                         title="Düzenle"
                                     >
                                         ✏️
                                     </Link>
                                     <button
-                                        onClick={() => handleDelete(post._id)}
+                                        onClick={() => handleDelete(post.id)}
                                         className="p-2 text-red-600 hover:bg-red-50 rounded transition"
                                         title="Sil"
                                     >

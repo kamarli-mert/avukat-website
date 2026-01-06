@@ -1,27 +1,36 @@
 import Link from "next/link";
 import Image from "next/image";
 
-async function getData() {
-    const res = await fetch("http://127.0.0.1:5000/api/posts", { cache: "no-store" });
-    if (!res.ok) throw new Error("Failed to fetch data");
-    return res.json();
-}
+import prisma from "@/app/lib/prisma";
 
 export default async function BlogPage() {
-    const posts = await getData();
+    const posts = await prisma.post.findMany({
+        orderBy: { createdAt: 'desc' }
+    });
+
 
     return (
-        <div className="pt-32 pb-24 bg-slate-50 min-h-screen">
-            <div className="container mx-auto px-6">
-                <div className="text-center mb-20">
-                    <h4 className="text-primary font-serif font-bold tracking-[0.3em] uppercase text-sm mb-4">Hukuki Makaleler</h4>
-                    <h1 className="text-4xl lg:text-6xl font-serif font-bold text-slate-900">Blog Yazılarımız</h1>
-                    <div className="w-20 h-1 bg-primary mx-auto mt-6"></div>
+        <div className="pb-24 bg-slate-50 min-h-screen">
+            {/* Hero Section */}
+            <section className="relative h-[40vh] flex items-center justify-center overflow-hidden mb-20">
+                <Image
+                    src="/images/ui/hero-bg.png"
+                    alt="Hukuki Makaleler"
+                    fill
+                    className="object-cover brightness-[0.3]"
+                    priority
+                />
+                <div className="relative z-10 container mx-auto px-6 text-center">
+                    <h1 className="text-4xl lg:text-6xl font-serif font-bold text-white mb-6 tracking-tight">Hukuki Makalelerimiz</h1>
+                    <div className="w-20 h-1 bg-primary mx-auto"></div>
                 </div>
+            </section>
+
+            <div className="container mx-auto px-6">
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                     {posts.map((post: any) => (
-                        <Link href={`/blog/${post._id}`} key={post._id} className="group">
+                        <Link href={`/makalelerimiz/${post.id}`} key={post.id} className="group">
                             <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col h-full border border-slate-100">
                                 <div className="relative h-64 w-full overflow-hidden">
                                     {post.photo ? (
@@ -51,7 +60,7 @@ export default async function BlogPage() {
                                         {post.title}
                                     </h2>
                                     <p className="text-slate-600 line-clamp-3 mb-8 flex-1 leading-relaxed">
-                                        {post.desc.replace(/<[^>]*>?/gm, '').substring(0, 150)}...
+                                        {post.description.replace(/<[^>]*>?/gm, '').substring(0, 150)}...
                                     </p>
                                     <div className="flex items-center text-primary font-bold text-sm tracking-widest gap-2 group-hover:gap-4 transition-all">
                                         DEVAMINI OKU <span className="text-xl">→</span>

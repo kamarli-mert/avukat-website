@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
@@ -23,9 +24,10 @@ export default function RootLayout({
         <main className="min-h-screen">
           {children}
         </main>
-        <footer className="bg-slate-950 text-slate-400 py-12 border-t border-slate-900 mt-20">
+        <WhatsAppButton />
+        <footer className="bg-slate-950 text-slate-400 py-12 border-t border-slate-900">
           <div className="container mx-auto px-4 text-center">
-            <p>&copy; 2024 Av. Ali Taylan Hukuk ve Danışmanlık. Tüm hakları saklıdır.</p>
+            <p>&copy; 2026 Av. Ali Taylan Hukuk ve Danışmanlık. Tüm hakları saklıdır.</p>
           </div>
         </footer>
       </body>

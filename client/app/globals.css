@@ -53,3 +53,35 @@ h4,
   color: var(--primary);
   text-decoration: underline;
 }
+
+/* ReactQuill Editor Styles for Admin */
+.ql-editor,
+.ql-editor * {
+  color: #0F172A !important;
+  /* Deep Navy / Slate 900 */
+  -webkit-text-fill-color: #0F172A !important;
+}
+
+.ql-editor {
+  background-color: white !important;
+  font-size: 1rem;
+  line-height: 1.6;
+  min-height: 200px;
+}
+
+.ql-editor.ql-blank::before {
+  color: #94A3B8 !important;
+  /* Slate 400 for placeholder */
+}
+
+.ql-container.ql-snow {
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  background: white;
+}
+
+.ql-toolbar.ql-snow {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  background: #F8FAFC;
+}
